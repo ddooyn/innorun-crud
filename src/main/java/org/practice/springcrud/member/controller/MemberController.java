@@ -3,12 +3,13 @@ package org.practice.springcrud.member.controller;
 import lombok.RequiredArgsConstructor;
 import org.practice.springcrud.member.dto.MemberCreateRequest;
 import org.practice.springcrud.member.dto.MemberCreateResponse;
+import org.practice.springcrud.member.dto.MemberGetResponse;
 import org.practice.springcrud.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,9 +21,18 @@ public class MemberController {
             @RequestBody MemberCreateRequest request
     ) {
         MemberCreateResponse result = memberService.save(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(result);
+    @GetMapping("/members")
+    public ResponseEntity<List<MemberGetResponse>> getAll() {
+        List<MemberGetResponse> result = memberService.getAll();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/members/{memberId}")
+    public ResponseEntity<MemberGetResponse> getOne(@PathVariable Long memberId) {
+        MemberGetResponse result = memberService.getOne(memberId);
+        return ResponseEntity.ok(result);
     }
 }
