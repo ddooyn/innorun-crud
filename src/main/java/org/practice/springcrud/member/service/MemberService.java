@@ -35,8 +35,8 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public MemberGetResponse getOne(Long id) {
-        Member member = memberRepository.findById(id)
+    public MemberGetResponse getOne(Long memberId) {
+        Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalStateException(""));
 
         return new MemberGetResponse(
@@ -45,8 +45,8 @@ public class MemberService {
     }
 
     @Transactional
-    public MemberUpdateResponse update(Long id, MemberUpdateRequest request) {
-        Member member = memberRepository.findById(id)
+    public MemberUpdateResponse update(Long memberId, MemberUpdateRequest request) {
+        Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalStateException(""));
 
         member.changeUsername(request.getUsername());
@@ -54,5 +54,16 @@ public class MemberService {
         return new MemberUpdateResponse(
                 member.getId(), member.getUsername()
         );
+    }
+
+    @Transactional
+    public void delete(Long memberId) {
+        boolean exists = memberRepository.existsById(memberId);
+
+        if (!exists) {
+            throw new IllegalStateException("");
+        }
+
+        memberRepository.deleteById(memberId);
     }
 }
