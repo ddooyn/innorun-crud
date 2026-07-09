@@ -1,9 +1,7 @@
 package org.practice.springcrud.member.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.practice.springcrud.member.dto.MemberCreateRequest;
-import org.practice.springcrud.member.dto.MemberCreateResponse;
-import org.practice.springcrud.member.dto.MemberGetResponse;
+import org.practice.springcrud.member.dto.*;
 import org.practice.springcrud.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +29,19 @@ public class MemberController {
     }
 
     @GetMapping("/members/{memberId}")
-    public ResponseEntity<MemberGetResponse> getOne(@PathVariable Long memberId) {
+    public ResponseEntity<MemberGetResponse> getOne(
+            @PathVariable Long memberId
+    ) {
         MemberGetResponse result = memberService.getOne(memberId);
+        return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("/members/{memberId}")
+    public ResponseEntity<MemberUpdateResponse> update(
+            @PathVariable Long memberId,
+            @RequestBody MemberUpdateRequest request
+    ) {
+        MemberUpdateResponse result = memberService.update(memberId, request);
         return ResponseEntity.ok(result);
     }
 }

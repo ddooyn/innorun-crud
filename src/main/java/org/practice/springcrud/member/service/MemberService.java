@@ -1,9 +1,7 @@
 package org.practice.springcrud.member.service;
 
 import lombok.RequiredArgsConstructor;
-import org.practice.springcrud.member.dto.MemberCreateRequest;
-import org.practice.springcrud.member.dto.MemberCreateResponse;
-import org.practice.springcrud.member.dto.MemberGetResponse;
+import org.practice.springcrud.member.dto.*;
 import org.practice.springcrud.member.entity.Member;
 import org.practice.springcrud.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
@@ -42,6 +40,18 @@ public class MemberService {
                 .orElseThrow(() -> new IllegalStateException(""));
 
         return new MemberGetResponse(
+                member.getId(), member.getUsername()
+        );
+    }
+
+    @Transactional
+    public MemberUpdateResponse update(Long id, MemberUpdateRequest request) {
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException(""));
+
+        member.changeUsername(request.getUsername());
+
+        return new MemberUpdateResponse(
                 member.getId(), member.getUsername()
         );
     }
