@@ -20,7 +20,7 @@ public class UserService {
         userRepository.save(user);
 
         return new UserCreateResponse(
-                user.getId(), user.getName()
+                user.getId(), user.getName(), user.getCreatedAt()
         );
     }
 
@@ -30,7 +30,7 @@ public class UserService {
 
         return users.stream()
                 .map(user -> new UserGetResponse(
-                        user.getId(), user.getName()
+                        user.getId(), user.getName(), user.getCreatedAt(), user.getModifiedAt()
                 )).toList();
     }
 
@@ -40,7 +40,7 @@ public class UserService {
                 .orElseThrow(() -> new IllegalStateException(""));
 
         return new UserGetResponse(
-                user.getId(), user.getName()
+                user.getId(), user.getName(), user.getCreatedAt(), user.getModifiedAt()
         );
     }
 
@@ -52,7 +52,7 @@ public class UserService {
         user.changeName(request.getName());
 
         return new UserUpdateResponse(
-                user.getId(), user.getName()
+                user.getId(), user.getName(), user.getModifiedAt()
         );
     }
 
