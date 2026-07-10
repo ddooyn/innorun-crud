@@ -17,10 +17,10 @@ public class MemberService {
     @Transactional
     public MemberCreateResponse save(MemberCreateRequest request) {
         Member member = new Member(request.getUsername());
-        Member savedMember = memberRepository.save(member);
+        memberRepository.save(member);
 
         return new MemberCreateResponse(
-                savedMember.getId(), savedMember.getUsername()
+                member.getId(), member.getUsername()
         );
     }
 

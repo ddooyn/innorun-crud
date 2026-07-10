@@ -17,10 +17,10 @@ public class MemoService {
     @Transactional
     public MemoCreateResponse save(MemoCreateRequest request) {
         Memo memo = new Memo(request.getContent());
-        Memo savedMemo = memoRepository.save(memo);
+        memoRepository.save(memo);
 
         return new MemoCreateResponse(
-                savedMemo.getId(), savedMemo.getContent()
+                memo.getId(), memo.getContent()
         );
     }
 
