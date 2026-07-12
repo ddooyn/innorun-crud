@@ -6,6 +6,7 @@ import org.practice.springcrud.member.entity.Member;
 import org.practice.springcrud.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -49,7 +50,15 @@ public class MemberService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalStateException(""));
 
+        String memberUsername = member.getUsername();
+        String requestUsername = request.getUsername();
+
+        if (ObjectUtils.nullSafeEquals(memberUsername, requestUsername)) {
+            throw new IllegalArgumentException("");
+        }
+
         member.changeUsername(request.getUsername());
+        memberRepository.saveAndFlush(member);
 
         return new MemberUpdateResponse(
                 member.getId(), member.getUsername()
