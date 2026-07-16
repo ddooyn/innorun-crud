@@ -18,7 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-.idea
+260709/.idea
 *.iws
 *.iml
 *.ipr
@@ -35,6 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### OS Specific ###
-.DS_Store
