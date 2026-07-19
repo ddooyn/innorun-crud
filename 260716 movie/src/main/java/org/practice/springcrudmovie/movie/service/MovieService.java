@@ -7,6 +7,7 @@ import org.practice.springcrudmovie.movie.dto.response.MovieCreateResponse;
 import org.practice.springcrudmovie.movie.dto.response.MovieGetResponse;
 import org.practice.springcrudmovie.movie.dto.response.MovieUpdateResponse;
 import org.practice.springcrudmovie.movie.entity.Movie;
+import org.practice.springcrudmovie.movie.exception.MovieNotFoundException;
 import org.practice.springcrudmovie.movie.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +42,7 @@ public class MovieService {
     @Transactional(readOnly = true)
     public MovieGetResponse getOne(Long movieId) {
         Movie movie = movieRepository.findById(movieId)
-                .orElseThrow(() -> new IllegalStateException(""));
+                .orElseThrow(() -> new MovieNotFoundException("해당 영화를 찾을 수 없습니다."));
 
         return new MovieGetResponse(
                 movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl()
@@ -51,7 +52,7 @@ public class MovieService {
     @Transactional
     public MovieUpdateResponse update(Long movieId, MovieUpdateRequest request) {
         Movie movie = movieRepository.findById(movieId)
-                .orElseThrow(() -> new IllegalStateException(""));
+                .orElseThrow(() -> new MovieNotFoundException("해당 영화를 찾을 수 없습니다."));
 
         movie.update(request.getTitle(), request.getDescription(), request.getImageUrl());
 
@@ -65,7 +66,7 @@ public class MovieService {
         boolean exists = movieRepository.existsById(movieId);
 
         if (!exists) {
-            throw new IllegalStateException("");
+            throw new MovieNotFoundException("해당 영화를 찾을 수 없습니다.");
         }
 
         movieRepository.deleteById(movieId);
