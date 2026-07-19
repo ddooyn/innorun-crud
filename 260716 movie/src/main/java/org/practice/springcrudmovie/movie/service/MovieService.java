@@ -55,6 +55,7 @@ public class MovieService {
                 .orElseThrow(() -> new MovieNotFoundException("해당 영화를 찾을 수 없습니다."));
 
         movie.update(request.getTitle(), request.getDescription(), request.getImageUrl());
+        movieRepository.saveAndFlush(movie);
 
         return new MovieUpdateResponse(
                 movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl(), movie.getCreatedAt(), movie.getUpdatedAt()

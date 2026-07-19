@@ -62,6 +62,7 @@ public class ReviewService {
                 .orElseThrow(() -> new ReviewNotFoundException("해당 리뷰를 찾을 수 없습니다."));
 
         review.update(request.getRating(), request.getContent());
+        reviewRepository.saveAndFlush(review);
 
         return new ReviewUpdateResponse(
                 review.getId(), review.getMovie().getId(), review.getRating(), review.getContent(), review.getCreatedAt(), review.getUpdatedAt()
