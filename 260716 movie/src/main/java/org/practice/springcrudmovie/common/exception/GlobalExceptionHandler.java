@@ -18,4 +18,11 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
+
+    @ExceptionHandler(ServiceException.class)
+    public ResponseEntity<String> handleServiceException(ServiceException e) {
+        return ResponseEntity
+                .status(e.getStatus())
+                .body("ServiceException: " + e.getMessage());
+    }
 }
