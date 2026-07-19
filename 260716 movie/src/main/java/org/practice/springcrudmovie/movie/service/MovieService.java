@@ -25,7 +25,7 @@ public class MovieService {
         movieRepository.save(movie);
 
         return new MovieCreateResponse(
-                movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl()
+                movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl(), movie.getCreatedAt()
         );
     }
 
@@ -35,7 +35,7 @@ public class MovieService {
 
         return movies.stream()
                 .map(movie -> new MovieGetResponse(
-                        movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl()
+                        movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl(), movie.getCreatedAt(), movie.getUpdatedAt()
                 )).toList();
     }
 
@@ -45,7 +45,7 @@ public class MovieService {
                 .orElseThrow(() -> new MovieNotFoundException("해당 영화를 찾을 수 없습니다."));
 
         return new MovieGetResponse(
-                movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl()
+                movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl(), movie.getCreatedAt(), movie.getUpdatedAt()
         );
     }
 
@@ -57,7 +57,7 @@ public class MovieService {
         movie.update(request.getTitle(), request.getDescription(), request.getImageUrl());
 
         return new MovieUpdateResponse(
-                movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl()
+                movie.getId(), movie.getTitle(), movie.getDescription(), movie.getImageUrl(), movie.getCreatedAt(), movie.getUpdatedAt()
         );
     }
 

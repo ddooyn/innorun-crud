@@ -16,11 +16,10 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
 
-    @PostMapping
+    @PostMapping("/movies")
     public ResponseEntity<MovieCreateResponse> create(
             @Valid @RequestBody MovieCreateRequest request
     ) {
@@ -28,13 +27,13 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    @GetMapping
+    @GetMapping("/movies")
     public ResponseEntity<List<MovieGetResponse>> getAll() {
         List<MovieGetResponse> result = movieService.getAll();
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/{movieId}")
+    @GetMapping("/movies/{movieId}")
     public ResponseEntity<MovieGetResponse> getOne(
             @PathVariable Long movieId
     ) {
@@ -42,7 +41,7 @@ public class MovieController {
         return ResponseEntity.ok(result);
     }
 
-    @PutMapping("/{movieId}")
+    @PutMapping("/movies/{movieId}")
     public ResponseEntity<MovieUpdateResponse> update(
             @PathVariable Long movieId,
             @Valid @RequestBody MovieUpdateRequest request
@@ -51,7 +50,7 @@ public class MovieController {
         return ResponseEntity.ok(result);
     }
 
-    @DeleteMapping("/{movieId}")
+    @DeleteMapping("/movies/{movieId}")
     public ResponseEntity<Void> delete(
             @PathVariable Long movieId
     ) {
