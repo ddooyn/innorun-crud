@@ -1,5 +1,6 @@
 package org.practice.springcrudmovie.movie.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.practice.springcrudmovie.movie.dto.request.MovieCreateRequest;
 import org.practice.springcrudmovie.movie.dto.request.MovieUpdateRequest;
@@ -21,7 +22,7 @@ public class MovieController {
 
     @PostMapping
     public ResponseEntity<MovieCreateResponse> create(
-            @RequestBody MovieCreateRequest request
+            @Valid @RequestBody MovieCreateRequest request
     ) {
         MovieCreateResponse result = movieService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
@@ -44,7 +45,7 @@ public class MovieController {
     @PutMapping("/{movieId}")
     public ResponseEntity<MovieUpdateResponse> update(
             @PathVariable Long movieId,
-            @RequestBody MovieUpdateRequest request
+            @Valid @RequestBody MovieUpdateRequest request
     ) {
         MovieUpdateResponse result = movieService.update(movieId, request);
         return ResponseEntity.ok(result);
