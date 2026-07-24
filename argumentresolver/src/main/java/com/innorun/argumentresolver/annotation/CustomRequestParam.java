@@ -1,4 +1,4 @@
-package com.innorun.argumentresolver;
+package com.innorun.argumentresolver.annotation;
 
 import org.springframework.web.bind.annotation.ValueConstants;
 
