@@ -29,14 +29,9 @@
 
 <img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/9fea53b3-34cd-4556-b66f-85dd1beacb1a" />
 <img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/60c0c09c-2452-4a02-9884-dc3f6e1862c0" />
+<img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/6e4140cb-d514-48e0-8a10-e7a9ebe92f38" />
+<img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/99c9080f-b032-4a5c-a14b-c9e1868130d2" />
 
-<img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/40d7a639-c16a-45e4-8c40-0ae860807b7b" />
-
-> mget 응답 안 옴 확인 필요
-
-<img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/abc80dba-ea3f-4894-9e74-2d6b1f5f652f" />
-
-> increment 500 에러 확인 필요
 
 ## 6. TTL
 <img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/977161a0-4050-4e7d-a060-9491c7c25f06" />
