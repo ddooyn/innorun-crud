@@ -34,4 +34,11 @@
 
 
 ## 6. TTL
-<img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/977161a0-4050-4e7d-a060-9491c7c25f06" />
+|TTL 결과|의미|
+|-------|---|
+|> 0|남은 만료 시간(초)|
+|-1|키는 존재하지만 TTL이 설정되어 있지 않음 (영구 저장)|
+|-2|키가 존재하지 않음 (삭제되었거나 원래 없었음)|
+
+|<img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/977161a0-4050-4e7d-a060-9491c7c25f06" />|<img width="846" height="589" alt="image" src="https://github.com/user-attachments/assets/08ff1aa6-ab75-4eeb-9dcb-b323ea76683a" />|
+|---|---|
